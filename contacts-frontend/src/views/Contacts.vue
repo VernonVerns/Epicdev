@@ -1,8 +1,9 @@
-<script setup>
+<script setup lang="ts">
     import SideBar from "../components/SideBar.vue"
     import AddContact from "../components/modals/AddContact.vue"
     import SingleContact from "../components/SingleContact.vue"
     import ContactsList from '../components/ContactsList.vue';
+    import DefaultView from "../components/DefaultView.vue"
 </script>
 
 <template>
@@ -32,7 +33,8 @@
                 
                 <div class="inner-sec">
                     <ContactsList />
-                    <SingleContact />
+                    <DefaultView v-if="$route.name == 'ContactsPage'" />
+                    <router-view />
                 </div>
             </div>
         </div>

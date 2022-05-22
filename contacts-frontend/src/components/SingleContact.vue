@@ -1,9 +1,19 @@
-<script setup>
-    import DefaultView from "../components/DefaultView.vue"
+<script setup lang="ts">
+    import { useStore } from '../store'
+    import { onMounted, computed, watch } from 'vue'
+    import router from '../router'
+    const store = useStore()
+    const contact = computed(() => store.state.contact)
+    function getContact() {
+        store.dispatch('getContact', router.currentRoute.value.params.id)
+    }
+
+    onMounted(() => getContact())
+    watch(() => router.currentRoute.value, () => getContact())
+
 </script>
 <template>
-    <div class="single-contact-container">
-        <DefaultView hidden />
+    <div class="single-contact-container" v-if="contact">
         <div class="single-contact">
             <div class="content">
                 <div class="avatar">
@@ -11,23 +21,23 @@
                 </div>
                 <div class="details">
                     <div class="header-sec">
-                        <h3>John Doe</h3>
-                        <h5>@john.doe_</h5>
+                        <h3>{{contact.name+ ' '+contact.surname}}</h3>
+                        <h5>@{{contact.username}}</h5>
                     </div>
                     <div class="contacts-sec">
                         <h4 class="mini-title">Contact Details</h4>
                         <div class="contact-details">
                             <div>
                                 <h4 class="contact-label">Mobile Number</h4>
-                                <h4 class="contact">073 107 2459</h4>
+                                <h4 class="contact">{{contact.cellNumber}}</h4>
                             </div>
                             <div>
-                                <h4 class="contact-label">Tel Number</h4>
-                                <h4 class="contact">039 727 2624</h4>
+                                <h4 class="contact-label">Home Number</h4>
+                                <h4 class="contact">{{contact.homeNumber}}</h4>
                             </div>
                             <div>
                                 <h4 class="contact-label">Email Address</h4>
-                                <h4 class="contact">johndoe@domain.co.za</h4>
+                                <h4 class="contact">{{contact.email}}</h4>
                             </div>
                         </div>
                     </div>
@@ -43,8 +53,8 @@
                         <h5 class="note-date">May 20, 2022</h5>
                     </div>
                     <div class="action-icons">
-                        <a href="tel:+2700000000000"><img src="../assets/img/Icons/phone.svg" alt="phone icon" /></a>
-                        <a href="mailto:johndoe@domain.co.za"><img src="../assets/img/Icons/envelope.svg" alt="Envelope Icon" /></a>
+                        <a :href="`tel:${contact.cellNumber}`"><img src="../assets/img/Icons/phone.svg" alt="phone icon" /></a>
+                        <a :href="`mailto:${contact.email}`"><img src="../assets/img/Icons/envelope.svg" alt="Envelope Icon" /></a>
                     </div>
                 </div>
             </div>
