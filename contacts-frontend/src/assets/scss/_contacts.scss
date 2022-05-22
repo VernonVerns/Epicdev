@@ -1,0 +1,324 @@
+#contacts_page {
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: rgba(0,0,0,0.1);
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: $primary-color;
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .header-part {
+       
+    }
+
+    .content {
+        display: grid;
+        grid-template-columns: 20vw auto;
+        grid-template-rows: auto;
+        height: 80vh;
+        padding-top: 2em;
+
+        .main-side {
+            padding: 0 2em;
+            height: 80vh;
+            overflow-y: auto;
+
+            .header-part {
+                display: grid;
+                grid-template-columns: auto auto;
+                grid-template-rows: auto;
+                align-items: center;
+                margin-bottom: 2em;
+
+                .mini-title {
+                    justify-self: flex-start;
+                    margin-bottom: 0;
+                }
+
+                .actions {
+                    justify-self: flex-end;
+                    display: flex;
+
+                    .main-btn {
+                        margin-right: 1em;
+                    }
+                }
+            }
+
+            .inner-sec {
+                display: grid;
+                grid-template-columns: 28vw auto;
+                grid-template-rows: auto;
+                column-gap: 1em;
+
+                .contacts-container {
+                    height: 70vh;
+                    background-color: rgba(255,255,255,0.03);
+                    border-radius: 10px;
+                    padding: 0.5em;
+                    position: relative;
+
+                    .search-part {
+                        position: relative;
+                        margin-bottom: 1em;
+        
+                        input {
+                            border: 0;
+                            border-radius: 15px;
+                            padding: 0.3em 1em;
+                            color: $text-color;
+                            margin: 0;
+                        }
+        
+                        button {
+                            position: absolute;
+                            top: 2px;
+                            right: 2px;
+                            border: 1px solid $grey-text-color;
+                            border-radius: 0 15px 15px 0;
+                            color: $grey-text-color;
+                            padding: 0.22em 0.75em;
+                            font-size: 14px;
+                            background-color: transparent;
+                            transition: $transition;
+        
+                            &:hover {
+                                color: $text-color;
+                                transition: $transition;
+                            }
+                        }
+                    }
+
+                    .contacts-list {
+                        overflow-y: auto;
+                        
+                        
+                        .nice-card {
+                            background: $dark-color;
+                            padding: 0.75em 1em;
+                            border: 1px solid $dark-color;
+                            display: grid;
+                            grid-template-columns: 50px auto auto;
+                            grid-template-rows: auto;
+                            column-gap: 0.5em;
+                            align-items: center;
+                            margin-bottom: 5px;
+                            cursor: pointer;
+                            transition: $transition;
+                            position: relative;
+    
+                            &:first-child {
+                                border-radius: 10px 10px 0 0;
+                            }
+    
+                            &:last-child {
+                                border-radius: 0 0 10px 10px;
+                            }
+    
+                            &:hover {
+                                background-color: lighten($dark-color, 5%);
+                                transition: $transition;
+                            }
+    
+                            .contact-avatar {
+                                justify-self: flex-start;
+                                width: 50px;
+                                height: 50px;
+                                display: inline-block;
+                                border-radius: 100%;
+    
+                                img {
+                                    border-radius: 25px;
+                                }
+                            }
+    
+                            .name-and-contact {
+                                .name {
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    color: $text-color;
+                                    margin: 0;
+                                    margin-bottom: 5px;
+                                }
+    
+                                .quick-contact {
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                    color: $grey-text-color;
+                                    margin: 0;
+                                    
+                                }
+                            }
+    
+                            .arrow-right {
+                                justify-self: end;
+                                color: $text-color;
+                            }
+
+                            label {
+                                position: absolute;
+                                top: 0.2em;
+                                right: 0.2em;
+                                display: inline-block;
+                                height: 15px;
+                                width: 15px;
+                                border-radius: 5px;
+                                background-color: $bg-color;
+                                cursor: pointer;
+                                display: none;
+                                transition: $transition;
+                            }
+
+                            input:checked + label {
+                                background-color: $primary-color;
+                                display: block;
+                                transition: $transition;
+                            }
+                            
+                            &:hover {
+                                label {
+                                    display: block;
+                                    transition: $transition;
+                                }
+                            }
+                        }
+                    }
+
+                    .footer-action-btns {
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        padding: 1em;
+                    }
+                }
+                
+                .single-contact-container {
+                    height: 70vh;
+                    width: 100%;
+                    background-color: rgba(255,255,255,0.03);
+                    border-radius: 10px;
+                    padding: 0 1em;
+                    position: relative;
+                    overflow-y: auto;
+
+                    .single-contact {
+                        .content {
+                            display: grid;
+                            grid-template-columns: auto auto;
+                            grid-template-rows: auto;
+                            column-gap: 2em;
+
+                            .avatar {
+                                img {
+                                    width: 100px;
+                                }
+                            }
+
+                            .details {
+                                .header-sec {
+                                    padding-top: 1.5em;
+                                    margin-bottom: 2em;
+
+                                    h3 {
+                                        font-size: 22px;
+                                        font-weight: 700;
+                                        margin: 0;
+                                        color: $text-color;
+                                    }
+
+                                    h5 {
+                                        color: $grey-text-color;
+                                        font-size: 18px;
+                                        font-weight: 300;
+                                    }
+                                }
+
+                                .contacts-sec {
+                                    .contact-details {
+                                        display: grid;
+                                        grid-template-columns: auto auto;
+                                        grid-template-rows: auto;
+                                        row-gap: 1.5em;
+                                        margin-bottom: 2em;
+
+                                        .contact-label {
+                                            color: $grey-text-color;
+                                            font-size: 14px;
+                                            text-transform: uppercase;
+                                            margin: 0;
+                                            margin-bottom: 5px;
+                                        }
+
+                                        .contact {
+                                            margin: 0;
+                                            font-size: 16px;
+                                            color: rgba(255,255,255,0.8);
+                                        }
+                                    }
+                                }
+
+                                .contact-notes {
+                                    span {
+                                        color: $grey-text-color;
+                                        font-weight: 300;
+                                    }
+
+                                    .mini-title {
+                                        &.note-title {
+                                            margin-bottom: 1em !important;
+                                        }
+                                    }
+
+                                    p {
+                                        font-size: 16px;
+                                        color: rgba(255,255,255,0.8);
+                                    }
+
+                                    .note-date {
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                        color: rgba(255,255,255,0.8);
+                                    }
+                                }
+
+                                .action-icons {
+                                    position: absolute;
+                                    top: 1em;
+                                    right: 1em;
+
+                                    a {
+                                        display: inline-block;
+                                        margin-right: 1em;
+                                        background-color: $primary-color;
+                                        padding: 0.5em 0.75em;
+                                        text-align: center;
+                                        width: 40px;
+                                        height: 40px;
+                                        border-radius: 100%;
+                                        color: $text-color !important;
+
+                                        &:last-child {
+                                            margin-right: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

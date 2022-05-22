@@ -1,0 +1,58 @@
+* {
+	font-family: 'Roboto', sans-serif;
+	box-sizing: border-box;
+}
+
+body {
+	-ms-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	padding: 0;
+	margin: 0;
+	overflow-x: hidden;
+    background-color: $bg-color;
+	position: relative;
+}
+
+a {
+	text-decoration: none;
+	outline: 0;
+}
+
+button {
+	outline: none !important;
+}
+
+input, textarea {
+    border: 0;
+	border-radius: 15px;
+	width: 100%;
+	margin-bottom: 0.5em;
+	padding: 0.3em 0.75em;
+	font-size: 16px;
+	outline: none;
+	background-color: $dark-color !important;
+	color: $text-color;
+	font-weight: 500;
+	border: 1px solid transparent;
+    
+	&:focus {
+		border-color: $grey-text-color;
+		box-shadow: none;
+	}
+}
+
+textarea {
+	resize: none;
+	min-height: 150px;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+img {
+	width: 100%;
+}
