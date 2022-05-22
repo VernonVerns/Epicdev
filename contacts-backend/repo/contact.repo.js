@@ -33,6 +33,22 @@ module.exports = class ContactRepo {
         })
     }
 
+    getSearchedContacts(req, res) {
+        const {searchText} = req.body
+       const keys = ['name', 'surname', 'email']
+        this.db.getSearched(keys, searchText, (error, result) => {
+            if (error) {
+                res.status(403).send(error)
+            } else {
+                
+                if (result && result.length > 0) {
+                    result = result.map(contact => this.fromDbFormat(contact))
+                }
+                res.status(200).send(result)
+            }
+        })
+    }
+
     getById(req, res) {
         const id = req.params.contactId
         this.db.getById(id, (error, result) => {

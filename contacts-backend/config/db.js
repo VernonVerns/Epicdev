@@ -76,6 +76,28 @@ class DB {
 
     /**
      * 
+     * @param {*} keys 
+     * @param {*} searchedText 
+     * @param {*} callback 
+     */
+    getSearched(keys, searchedText, callback) {
+        this.connection.connect((err) => {
+            if (err) {
+                callback(err, null)
+            } else {
+                this.connection.query(`SELECT * FROM ${this.table} WHERE ${this.prepareSearch(keys, searchedText)}`, (error, result) => {
+                    if (error) {
+                        callback(error, null)
+                    } else {
+                        callback(null, result)
+                    }
+                })
+            }
+        })
+    }
+
+    /**
+     * 
      * @param id 
      * @param {error, result} callback 
      */
@@ -127,6 +149,19 @@ class DB {
         keySegments = keySegments.substring(0, keySegments.length - 1)
         valueSegments =  valueSegments.substring(0, valueSegments.length - 1)
         return `(${keySegments}) VALUES (${valueSegments})`
+    }
+
+    prepareSearch(keys, searchedText) {
+        let searchSegment = ''
+        for (let index = 0; index < keys.length; index++) {
+            const key = keys[index];
+            if (index == keys.length - 1) {
+                searchSegment += `${key} LIKE '%${searchedText}%'`
+            } else {
+                searchSegment += `${key} LIKE '%${searchedText}%' OR `
+            }
+        }
+        return searchSegment
     }
     
 }

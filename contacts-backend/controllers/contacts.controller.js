@@ -8,6 +8,8 @@ router.get('/', (req, res) => contactRepo.getAllContacts(req, res))
 
 router.get('/:contactId', (req, res) => contactRepo.getById(req, res))
 
+router.get('/search/contact', (req, res) => contactRepo.getSearchedContacts(req, res))
+
 router.delete('/:contactId', (req, res) => contactRepo.delete(req, res))
 
 router.delete('/', (req, res) => contactRepo.deleteMany(req, res))
