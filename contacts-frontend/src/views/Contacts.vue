@@ -1,9 +1,8 @@
 <script setup>
     import SideBar from "../components/SideBar.vue"
-    import ContactCard from "../components/ContactCard.vue";
     import AddContact from "../components/modals/AddContact.vue"
     import SingleContact from "../components/SingleContact.vue"
-    import DefaultView from "../components/DefaultView.vue"
+    import ContactsList from '../components/ContactsList.vue';
 </script>
 
 <template>
@@ -32,24 +31,8 @@
                 </div>
                 
                 <div class="inner-sec">
-                    <div class="contacts-container">
-                        <div class="search-part">
-                            <input type="search" name="search" id="search" placeholder="Find contact">
-                            <button type="button">Search</button>
-                        </div>
-                        <div class="contacts-list">
-                            <ContactCard />
-                            <ContactCard />
-                            <ContactCard />
-                        </div>
-                        <div class="footer-action-btns">
-                            <button type="button" class="delete-btn shadow">Delete</button>
-                        </div>
-                    </div>
-                    <div class="single-contact-container">
-                        <DefaultView hidden />
-                        <SingleContact />
-                    </div>
+                    <ContactsList />
+                    <SingleContact />
                 </div>
             </div>
         </div>
