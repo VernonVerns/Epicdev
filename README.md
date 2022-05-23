@@ -1,3 +1,3 @@
 # Epicdev
 
-## Vuejs + Vite + Typscript
+## Vue + Vite + Typscript
